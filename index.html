@@ -37,9 +37,14 @@
         </a>
         <a class="btn btn-ghost" href="#lien-he">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.2A8.5 8.5 0 1 1 21 11.5z" stroke="currentColor" stroke-width="1.6"/></svg>
-          Nhắn Zalo
+          Nhắn Messenger
         </a>
+        <button type="button" class="btn btn-location" onclick="guiViTriKhanCap()">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="currentColor" stroke-width="1.6"/></svg>
+          Gửi vị trí khẩn cấp
+        </button>
       </div>
+      <p id="loc-status" class="loc-status"></p>
       <div class="hero-stats">
         <div class="stat"><b>24/24</b><span>lốp lưu động, kể cả đêm khuya</span></div>
         <div class="stat"><b>10+</b><span>hãng lốp chính hãng phân phối</span></div>
@@ -54,7 +59,7 @@
     </div>
 
     <div class="hero-photo">
-      <img src="assets/images/1790637402205_9091681801149175934_9091681801149175934_61930ccbdb0a666e7043aa1739221489.jpg" alt="Xe lưu động Thế Giới Mâm Lốp Lê Tú">
+      <img src="assets/images/hero-xe-luu-dong.jpg" alt="Xe lưu động Thế Giới Mâm Lốp Lê Tú">
       <div class="hero-photo-cap">Xe làm lốp lưu động 24/24 — Thế Giới Mâm Lốp Lê Tú</div>
     </div>
   </div>
@@ -137,12 +142,8 @@
     </div>
     <div class="areas-grid">
       <div class="area-block">
-        <h3>Cơ sở</h3>
-        <ul class="route-list">
-          <li><span class="route-code">Cơ sở 1</span>205 Đinh Tiên Hoàng, TP. Buôn Ma Thuột, Đắk Lắk</li>
-          <li><span class="route-code">Cơ sở 2</span>235 Nguyễn Văn Cừ, TP. Buôn Ma Thuột, Đắk Lắk</li>
-        </ul>
-        <p class="note-line">Ngoài 2 cơ sở trên, đội xe lưu động 24/24 vẫn có mặt tận nơi trên toàn TP. Buôn Ma Thuột và các huyện lân cận — chỉ cần gọi hotline.</p>
+        <h3>Địa bàn lưu động</h3>
+        <p class="note-line">Ngoài 2 cơ sở trên bản đồ bên dưới, đội xe lưu động 24/24 vẫn có mặt tận nơi trên toàn TP. Buôn Ma Thuột và các huyện lân cận — chỉ cần gọi hotline.</p>
       </div>
       <div class="area-block">
         <h3>Tuyến quốc lộ chính</h3>
@@ -151,6 +152,27 @@
           <li><span class="route-code">QL26</span> Buôn Ma Thuột — Khánh Hòa (Ninh Hòa)</li>
           <li><span class="route-code">QL27</span> Buôn Ma Thuột — Lâm Đồng (Đà Lạt)</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="sat-map" id="ban-do">
+      <div class="sat-tabs" role="tablist" aria-label="Chọn cơ sở xem bản đồ vệ tinh">
+        <button type="button" class="sat-tab" role="tab" aria-selected="true" data-co-so="1">Cơ sở 1 — 148 Đinh Tiên Hoàng</button>
+        <button type="button" class="sat-tab" role="tab" aria-selected="false" data-co-so="2">Cơ sở 2 — 235 Nguyễn Văn Cừ</button>
+      </div>
+      <div class="sat-frame">
+        <iframe id="sat-iframe" title="Bản đồ vệ tinh Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+          src="https://www.google.com/maps?q=148+%C4%90inh+Ti%C3%AAn+Ho%C3%A0ng%2C+Bu%C3%B4n+Ma+Thu%E1%BB%99t&amp;z=17&amp;hl=vi&amp;output=embed"></iframe>
+      </div>
+      <div class="sat-meta">
+        <span id="sat-caption">Vị trí Cơ sở 1 — kéo, phóng to/thu nhỏ; bấm ô nhỏ ở góc trái dưới để xem ảnh vệ tinh.</span>
+        <span class="sat-links">
+          <a id="sat-open" href="https://www.google.com/maps?q=148+%C4%90inh+Ti%C3%AAn+Ho%C3%A0ng%2C+Bu%C3%B4n+Ma+Thu%E1%BB%99t&amp;t=k" target="_blank" rel="noopener">Xem ảnh vệ tinh</a>
+          <a id="sat-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=148+%C4%90inh+Ti%C3%AAn+Ho%C3%A0ng%2C+Bu%C3%B4n+Ma+Thu%E1%BB%99t" target="_blank" rel="noopener">Chỉ đường tới đây</a>
+        </span>
+      </div>
+      <div class="sat-big-wrap">
+        <a id="sat-big" class="btn btn-primary sat-big" href="https://www.google.com/maps/search/?api=1&amp;query=148+%C4%90inh+Ti%C3%AAn+Ho%C3%A0ng%2C+Bu%C3%B4n+Ma+Thu%E1%BB%99t" target="_blank" rel="noopener">Xem bản đồ lớn trên Google Maps</a>
       </div>
     </div>
   </div>
@@ -234,7 +256,7 @@
       <div class="contact-card">
         <h3>Địa bàn hoạt động</h3>
         <div class="big" style="font-size:1.25rem; color:var(--paper);">TP. Buôn Ma Thuột, Đắk Lắk</div>
-        <div class="note">205 Đinh Tiên Hoàng &amp; 235 Nguyễn Văn Cừ, cùng các tuyến QL14, QL26, QL27.</div>
+        <div class="note">148 Đinh Tiên Hoàng &amp; 235 Nguyễn Văn Cừ, cùng các tuyến QL14, QL26, QL27.</div>
         <div class="contact-actions">
           <a class="btn btn-ghost" href="#khu-vuc">Xem khu vực phục vụ</a>
         </div>
@@ -255,5 +277,6 @@
   Gọi cứu hộ: 036 225 8360
 </a>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>
